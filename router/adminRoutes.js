@@ -10,7 +10,7 @@ adminRoutes.get('/createblog', adminController.openCreateBlogPage);
 adminRoutes.post('/createblog', upload, adminController.addBlog);
 
 adminRoutes.get('/editblog/:id', adminController.openEditBlogPage);
-adminRoutes.post('/editblog/:id', adminController.EditBlog);
+adminRoutes.post('/editblog/:id', upload, adminController.EditBlog);
 
 adminRoutes.get('/delete/:id', adminController.DeletBlog);
 

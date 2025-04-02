@@ -52,9 +52,11 @@ module.exports.openEditBlogPage = async (req, res) => {
         const blogToedit = await blog.findById(id);
 
         if (!blogToedit) {
-            console.log('blog not found...');
+            console.log('Blog not found...');
             return res.render('admin/editblog', { blogToedit: {} });
         }
+
+        console.log("Editing Blog:", blogToedit);
         return res.render('admin/editblog', { blogToedit });
 
     } catch (error) {
@@ -62,6 +64,7 @@ module.exports.openEditBlogPage = async (req, res) => {
         return res.render('admin/editblog', { blogToedit: {} });
     }
 };
+
 
 // Edit Blog //
 module.exports.EditBlog = async (req, res) => {
