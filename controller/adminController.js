@@ -53,44 +53,37 @@ module.exports.openEditBlogPage = async (req, res) => {
 
         if (!blogToedit) {
             console.log('blog not found...');
-            return res.render('admin/editblog', { blogToedit });
+            return res.render('admin/editblog', { blogToedit: {} });
         }
         return res.render('admin/editblog', { blogToedit });
 
     } catch (error) {
         console.log(error.message);
+        return res.render('admin/editblog', { blogToedit: {} });
     }
 };
 
 // Edit Blog //
 module.exports.EditBlog = async (req, res) => {
-    console.log(blog);
-
     try {
         const { id } = req.params;
-        const existingBlog = await blog.findById(id);
-
-        if (!existingBlog) {
-            return res.status(404).send('Blog not found.');
-        }
-
-        const updateBlog = { ...req.body };
+        const blogToupdate = { ...req.body };
 
         if (req.file) {
-            if (existingBlog.image) {
-                fs.unlinkSync(existingBlog.image);
-            }
-            updateBlog.image = req.file.path;
+            blogToupdate.image = req.file.path;
         }
 
-        await blog.findByIdAndUpdate(id, updateBlog);
+        await blog.findByIdAndUpdate(id, blogToupdate);
         console.log('Blog updated successfully!');
+
         return res.redirect('/');
     } catch (error) {
         console.log(error.message);
         return res.status(500).send('Internal Server Error');
     }
 };
+
+
 
 module.exports.singleBlogPage = async (req, res) => {
     const { id } = req.params;

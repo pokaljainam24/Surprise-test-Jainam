@@ -52,7 +52,7 @@
     </header>
 
 
-    <form class="container w-50" style="margin-top: 100px;" action="/editblog/<%= blogToedit._id %>" method="POST"
+    <form class="container w-50" style="margin-top: 100px;" action="/editblog/<%= blogToedit.id %>" method="POST"
         enctype="multipart/form-data">
         <h2 class="mb-3">Edit Blog Form</h2 class="mb-3">
         <div class="mb-3">
@@ -73,7 +73,7 @@
             <% if (blogToedit.image) { %>
                 <p class="mt-2">Current Image:</p>
                 <img src="/<%= blogToedit.image %>" alt="Current Image" class="img-thumbnail" width="200">
-                <% } %>
+            <% } %>
         </div>
 
         <div class="mb-3">
